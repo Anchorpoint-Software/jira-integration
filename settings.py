@@ -92,7 +92,7 @@ def show_settings_dialog():
     dialog.add_text("Project Key \t") \
         .add_input(
             default= '',
-            placeholder="e.g. AI for Anchorpoint-Integration",
+            placeholder="AI for Anchorpoint-Integration",
             callback=None,
             var="jira_project_key",
             width=316

@@ -223,7 +223,7 @@ def main():
 
 
 if __name__ == "__main__":
-    if len(validate_settings()) == 0:
+    if validate_settings():
         ctx.run_async(main)
     else:
         ui.show_info("Jira setup incomplete, opening settings ...")
