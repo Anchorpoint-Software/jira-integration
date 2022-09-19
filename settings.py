@@ -9,7 +9,6 @@ def on_save(dialog: anchorpoint.Dialog):
 
     ui = anchorpoint.UI()
     if validate_settings():
-        ui.show_success("The configuration is completed", "Trying to synchronize projects now")
         dialog.close()
     else:
         ui.show_error("The configuration is still incomplete", "Please fill in all fields to complete the configuration.")
@@ -21,7 +20,7 @@ def get_settings() -> apsync.Settings:
     )
 
 
-def validate_settings() -> List[str]:
+def validate_settings() -> bool:
     settings = get_settings()
 
     if settings.get("local_folder", "") == "":
