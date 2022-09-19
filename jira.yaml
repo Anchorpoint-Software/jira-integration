@@ -1,0 +1,27 @@
+# Anchorpoint Markup Language
+# Predefined Variables: e.g. ${path}
+# Environment Variables: e.g. ${MY_VARIABLE}
+# Full documentation: https://docs.anchorpoint.app/Actions/Reference
+
+version: 1.0
+action:
+  name: Jira Synchronization
+
+  version: 1
+  id: ap::jira::package
+  type: package
+  enable: true
+  author: Anchorpoint Software GmbH
+  description: "Connects to Jira and creates folders based on Jira Epics"
+  details: ""
+  icon:
+    path: assets/icon.svg
+
+  platforms:
+    - win
+    - mac
+    
+  settings: settings.py
+
+  actions:
+    - ap::jira::sync_projects
