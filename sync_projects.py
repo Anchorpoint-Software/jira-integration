@@ -1,8 +1,6 @@
 import sys
 import os
 
-sys.path.insert(0, os.path.dirname(__file__))
-
 from jira_client import JiraClient, JiraError
 from settings import show_settings_dialog, validate_settings
 from dataclasses import dataclass
@@ -104,7 +102,14 @@ def get_jira_projects():
         if len(issuelinks) != 1:
             continue
 
-        prefix = issuelinks[0]["inwardIssue"]["key"]
+        link = issuelinks[0]
+        if "inwardIssue" in link:
+            prefix = link["inwardIssue"]["key"]
+        elif "outwardIssue" in link:
+            prefix = link["outwardIssue"]["key"]
+        else:
+            continue
+
         summary = issue["fields"]["summary"]
 
         results.append(JiraProject(
