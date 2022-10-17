@@ -70,6 +70,12 @@ def map_status_color(c: str):
         return apsync.TagColor.yellow
 
 
+def sanitize_fn(s: str):
+    for c in [":", "\\", "/", "*", "|", ">"]:
+        s = s.replace(c, "-")
+    return s.replace("\"", "'")
+
+
 def get_jira_statuses():
     results = []
 
@@ -115,7 +121,7 @@ def get_jira_projects():
         results.append(JiraProject(
             id=issue["id"],
             key=issue["key"],
-            name=f"{prefix}-{summary}"
+            name=sanitize_fn(f"{prefix}-{summary}")
         ))
 
     return results
