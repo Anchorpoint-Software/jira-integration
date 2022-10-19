@@ -166,7 +166,7 @@ def sync_project(r: SyncResults, p: JiraProject):
         os.makedirs(project_root, exist_ok=True)
     
     if not apsync.is_project(project_root):        
-        ap_proj = ctx.create_project(project_root, p.name)
+        ap_proj = ctx.create_project(project_root, p.name, ctx.workspace_id)
         r.new_projects_count += 1
     else:
         ap_proj = apsync.get_project(project_root)
